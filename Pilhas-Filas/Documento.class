@@ -1,0 +1,22 @@
+
+class Documento {
+   private String nome;
+   private int tamanho;
+
+   public Documento(String var1, int var2) {
+      this.nome = var1;
+      this.tamanho = var2;
+   }
+
+   public String getNome() {
+      return this.nome;
+   }
+
+   public int getTamanho() {
+      return this.tamanho;
+   }
+
+   public String toString() {
+      return "Documento{nome='" + this.nome + "', tamanho=" + this.tamanho + "}";
+   }
+}
