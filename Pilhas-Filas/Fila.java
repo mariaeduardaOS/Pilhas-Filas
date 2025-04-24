@@ -1,62 +1,37 @@
-class Documento {
-    private String nome;
-    private int tamanho;
+import java.util.LinkedList;
+import java.util.Queue;
 
-    public Documento(String nome, int tamanho) {
-        this.nome = nome;
-        this.tamanho = tamanho;
+public class Fila<T> {
+    private Queue<T> elementos;
+    private int capacidade;
+
+    public Fila(int capacidade) {
+        this.capacidade = capacidade;
+        this.elementos = new LinkedList<>();
     }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public int getTamanho() {
-        return tamanho;
-    }
-
-    @Override
-    public String toString() {
-        return "Documento{" + "nome='" + nome + '\'' + ", tamanho=" + tamanho + '}';
-    }
-}
-
-public class FilaImpressao {
-    private Fila<Documento> fila;
-
-    public FilaImpressao(int capacidade) {
-        fila = new Fila<>(capacidade);
-    }
-
-    public void adicionarDocumento(Documento doc) {
-        fila.enfileirar(doc);
-    }
-
-    public void imprimirProximo() {
-        if (!fila.estaVazia()) {
-            Documento doc = fila.desenfileirar();
-            System.out.println("Imprimindo: " + doc);
+    public void enfileirar(T elemento) {
+        if (elementos.size() < capacidade) {
+            elementos.add(elemento);
         } else {
-            System.out.println("Nenhum documento na fila.");
+            System.out.println("Fila cheia!");
         }
     }
 
-    public void mostrarFila() {
-        System.out.println("Documentos na fila: " + fila.tamanho());
+    public T desenfileirar() {
+        if (!estaVazia()) {
+            return elementos.poll();
+        } else {
+            System.out.println("Fila vazia!");
+            return null;
+        }
     }
 
-    public static void main(String[] args) {
-        FilaImpressao impressora = new FilaImpressao(5);
+    public boolean estaVazia() {
+        return elementos.isEmpty();
+    }
 
-        impressora.adicionarDocumento(new Documento("Doc1", 10));
-        impressora.adicionarDocumento(new Documento("Doc2", 15));
-        impressora.adicionarDocumento(new Documento("Doc3", 20));
-
-        impressora.mostrarFila();
-
-        impressora.imprimirProximo();
-        impressora.imprimirProximo();
-
-        impressora.mostrarFila();
+    public int tamanho() {
+        return elementos.size();
     }
 }
