@@ -9,11 +9,12 @@ public class EditorTexto {
         textoAtual = "";
     }
 
-    public void inserirTexto(String novoTexto) {
-        pilhaDesfazer.empilhar(textoAtual);
-        textoAtual = novoTexto;
-        pilhaRefazer = new Pilha<>(pilhaRefazer.getCapacidade()); // Limpa a pilha de refazer
-    }
+   
+   public void inserirTexto(String novoTexto) {
+    pilhaDesfazer.empilhar(textoAtual);
+    textoAtual = novoTexto;
+    pilhaRefazer = new Pilha<>(pilhaDesfazer.getCapacidade()); 
+}
 
     public void desfazer() {
         if (!pilhaDesfazer.estaVazia()) {
