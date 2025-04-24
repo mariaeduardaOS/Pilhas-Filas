@@ -1,28 +1,27 @@
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.ArrayList;
 
-public class Fila<T> {
-    private Queue<T> elementos;
+public class Pilha<T> {
+    private ArrayList<T> elementos;
     private int capacidade;
 
-    public Fila(int capacidade) {
+    public Pilha(int capacidade) {
         this.capacidade = capacidade;
-        this.elementos = new LinkedList<>();
+        this.elementos = new ArrayList<>(capacidade);
     }
 
-    public void enfileirar(T elemento) {
+    public void empilhar(T elemento) {
         if (elementos.size() < capacidade) {
             elementos.add(elemento);
         } else {
-            System.out.println("Fila cheia!");
+            System.out.println("Pilha cheia! Não é possível empilhar mais elementos.");
         }
     }
 
-    public T desenfileirar() {
+    public T desempilhar() {
         if (!estaVazia()) {
-            return elementos.poll();
+            return elementos.remove(elementos.size() - 1);
         } else {
-            System.out.println("Fila vazia!");
+            System.out.println("Pilha vazia! Não há elementos para desempilhar.");
             return null;
         }
     }
@@ -31,7 +30,11 @@ public class Fila<T> {
         return elementos.isEmpty();
     }
 
-    public int tamanho() {
-        return elementos.size();
+    public int getCapacidade() {
+        return capacidade;
+    }
+
+    public void limpar() {
+        elementos.clear();
     }
 }
