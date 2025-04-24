@@ -1,0 +1,55 @@
+// Source code is decompiled from a .class file using FernFlower decompiler.
+public class EditorTexto {
+   private Pilha<String> pilhaDesfazer;
+   private Pilha<String> pilhaRefazer;
+   private String textoAtual;
+
+   public EditorTexto(int var1) {
+      this.pilhaDesfazer = new Pilha(var1);
+      this.pilhaRefazer = new Pilha(var1);
+      this.textoAtual = "";
+   }
+
+   public void inserirTexto(String var1) {
+      this.pilhaDesfazer.empilhar(this.textoAtual);
+      this.textoAtual = var1;
+      this.pilhaRefazer = new Pilha(this.pilhaDesfazer.getCapacidade());
+   }
+
+   public void desfazer() {
+      if (!this.pilhaDesfazer.estaVazia()) {
+         this.pilhaRefazer.empilhar(this.textoAtual);
+         this.textoAtual = (String)this.pilhaDesfazer.desempilhar();
+      }
+
+   }
+
+   public void refazer() {
+      if (!this.pilhaRefazer.estaVazia()) {
+         this.pilhaDesfazer.empilhar(this.textoAtual);
+         this.textoAtual = (String)this.pilhaRefazer.desempilhar();
+      }
+
+   }
+
+   public String getTextoAtual() {
+      return this.textoAtual;
+   }
+
+   public static void main(String[] var0) {
+      EditorTexto var1 = new EditorTexto(10);
+      var1.inserirTexto("Texto inicial");
+      System.out.println("Texto atual: " + var1.getTextoAtual());
+      var1.inserirTexto("Texto adicionado");
+      System.out.println("Texto atual: " + var1.getTextoAtual());
+      var1.desfazer();
+      System.out.println("Após desfazer: " + var1.getTextoAtual());
+      var1.refazer();
+      System.out.println("Após refazer: " + var1.getTextoAtual());
+      var1.inserirTexto("Novo texto");
+      System.out.println("Texto atual: " + var1.getTextoAtual());
+      var1.desfazer();
+      var1.desfazer();
+      System.out.println("Após desfazer múltiplas vezes: " + var1.getTextoAtual());
+   }
+}
