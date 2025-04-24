@@ -1,0 +1,36 @@
+public class FilaImpressao {
+   private Fila<Documento> fila;
+
+   public FilaImpressao(int var1) {
+      this.fila = new Fila(var1);
+   }
+
+   public void adicionarDocumento(Documento var1) {
+      this.fila.enfileirar(var1);
+   }
+
+   public void imprimirProximo() {
+      if (!this.fila.estaVazia()) {
+         Documento var1 = (Documento)this.fila.desenfileirar();
+         System.out.println("Imprimindo: " + String.valueOf(var1));
+      } else {
+         System.out.println("Nenhum documento na fila.");
+      }
+
+   }
+
+   public void mostrarFila() {
+      System.out.println("Documentos na fila: " + this.fila.tamanho());
+   }
+
+   public static void main(String[] var0) {
+      FilaImpressao var1 = new FilaImpressao(5);
+      var1.adicionarDocumento(new Documento("Doc1", 10));
+      var1.adicionarDocumento(new Documento("Doc2", 15));
+      var1.adicionarDocumento(new Documento("Doc3", 20));
+      var1.mostrarFila();
+      var1.imprimirProximo();
+      var1.imprimirProximo();
+      var1.mostrarFila();
+   }
+}
