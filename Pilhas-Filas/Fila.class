@@ -1,0 +1,39 @@
+// Source code is decompiled from a .class file using FernFlower decompiler.
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class Fila<T> {
+   private Queue<T> elementos;
+   private int capacidade;
+
+   public Fila(int var1) {
+      this.capacidade = var1;
+      this.elementos = new LinkedList();
+   }
+
+   public void enfileirar(T var1) {
+      if (this.elementos.size() < this.capacidade) {
+         this.elementos.add(var1);
+      } else {
+         System.out.println("Fila cheia!");
+      }
+
+   }
+
+   public T desenfileirar() {
+      if (!this.estaVazia()) {
+         return this.elementos.poll();
+      } else {
+         System.out.println("Fila vazia!");
+         return null;
+      }
+   }
+
+   public boolean estaVazia() {
+      return this.elementos.isEmpty();
+   }
+
+   public int tamanho() {
+      return this.elementos.size();
+   }
+}
